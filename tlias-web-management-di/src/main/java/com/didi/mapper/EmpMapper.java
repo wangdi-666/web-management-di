@@ -98,4 +98,13 @@ public interface EmpMapper {
      */
     @Select("select count(*) from emp where dept_id = #{deptId}")
     Integer countByDeptId(Integer deptId);
+
+    /**
+     * 根据用户名和密码查询员工
+     * @param emp
+     * @return
+     */
+    @Select("select id, username, name from emp where username = #{username} and password = #{password}")
+    Emp selectByUsernameAndPassword(Emp emp);
+
 }

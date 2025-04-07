@@ -3,6 +3,7 @@ package com.didi.service;
 
 import com.didi.pojo.Emp;
 import com.didi.pojo.EmpQueryParam;
+import com.didi.pojo.LoginInfo;
 import com.didi.pojo.PageResult;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -55,4 +56,10 @@ public interface EmpService {
      */
     List<Emp> list();
 
+    /**
+     * 员工登录
+     * @param emp
+     * @return
+     */
+    LoginInfo login(Emp emp);
 }

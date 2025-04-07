@@ -5,8 +5,10 @@ import com.didi.mapper.EmpMapper;
 import com.didi.pojo.*;
 import com.didi.service.EmpLogService;
 import com.didi.service.EmpService;
+import com.didi.utils.JwtUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,11 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @Service
 public class EmpServiceImpl implements EmpService {
 
@@ -137,5 +142,26 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public List<Emp> list() {
         return empMapper.findAll();
+    }
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        // 1. 调用mapper接口，根据用户名和密码查询用户信息
+        Emp e = empMapper.selectByUsernameAndPassword(emp);
+
+        // 2.判断：判断是否存在这个员工，如果存在，组装登录成功信息
+        if(e != null){
+            log.info("登录成功,员工信息：{}", e);
+            // 生成JWT令牌
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", e.getId());
+            claims.put("username", e.getUsername());
+            String jwt = JwtUtils.generateJwt(claims);
+
+            return new LoginInfo(e.getId(), e.getUsername(), e.getName(), jwt);
+        }
+
+        // 3.不存在，返回null
+        return null;
     }
 }

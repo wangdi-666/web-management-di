@@ -1,6 +1,8 @@
 package com.didi.service.impl;
 
+import com.didi.exception.BusinessException;
 import com.didi.mapper.DeptMapper;
+import com.didi.mapper.EmpMapper;
 import com.didi.pojo.Dept;
 import com.didi.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,29 @@ public class DeptServiceImpl implements DeptService {
 
     @Autowired
     private DeptMapper deptMapper;
+    @Autowired
+    private EmpMapper empMapper;
 
     @Override
     public List<Dept> findAll() {
         return deptMapper.findAll();
     }
 
+
+    /*@Override
+    public void deleteById(Integer id) {
+        deptMapper.deleteById(id);
+    }*/
+
     @Override
     public void deleteById(Integer id) {
+        //1. 判断部门下是否有员工， 如果有， 需要提示错误信息
+        Integer count = empMapper.countByDeptId(id);
+        if(count > 0){
+            throw new BusinessException("部门下有员工， 不能删除");
+        }
+
+        //2. 删除部门
         deptMapper.deleteById(id);
     }
 

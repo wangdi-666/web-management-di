@@ -49,4 +49,10 @@ public interface EmpService {
      * @return
      */
     //PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end);
+
+    /**
+     * 查询所有的员工数据
+     */
+    List<Emp> list();
+
 }

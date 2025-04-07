@@ -1,5 +1,6 @@
 package com.didi.controller;
 
+import com.didi.pojo.ClazzCountOption;
 import com.didi.pojo.JobOption;
 import com.didi.pojo.Result;
 import com.didi.service.ReportService;
@@ -40,5 +41,25 @@ public class ReportController {
         log.info("统计员工性别人数");
         List<Map<String, Object>> genderList =  reportService.getEmpGenderData();
         return Result.success(genderList);
+    }
+
+    /**
+     * 统计学员的学历信息
+     */
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData(){
+        log.info("统计学员的学历信息");
+        List<Map> dataList = reportService.getStudentDegreeData();
+        return Result.success(dataList);
+    }
+
+    /**
+     * 班级人数统计
+     */
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData(){
+        log.info("班级人数统计");
+        ClazzCountOption clazzCountOption = reportService.getStudentCountData();
+        return Result.success(clazzCountOption);
     }
 }

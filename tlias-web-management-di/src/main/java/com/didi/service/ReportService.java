@@ -1,5 +1,6 @@
 package com.didi.service;
 
+import com.didi.pojo.ClazzCountOption;
 import com.didi.pojo.JobOption;
 
 import java.util.List;
@@ -18,4 +19,14 @@ public interface ReportService {
      * @return
      */
     List<Map<String, Object>> getEmpGenderData();
+
+    /**
+     * 统计学历人数
+     */
+    List<Map> getStudentDegreeData();
+
+    /**
+     * 统计班级人数
+     */
+    ClazzCountOption getStudentCountData();
 }

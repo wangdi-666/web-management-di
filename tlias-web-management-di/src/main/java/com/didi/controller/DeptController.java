@@ -1,6 +1,7 @@
 package com.didi.controller;
 
 
+import com.didi.anno.Log;
 import com.didi.pojo.Dept;
 import com.didi.pojo.Result;
 import com.didi.service.DeptService;
@@ -59,6 +60,7 @@ public class DeptController {
     /**
      * 删除部门 方式三：如果请求参数名与形参变量名相同，直接定义方法形参即可接受。(省略@RequestParam注解)(项目开发推荐方式)
      */
+    @Log
     @DeleteMapping
     public Result delete(Integer id){
         //System.out.println("根据ID删除部门数据：" + id);
@@ -70,6 +72,7 @@ public class DeptController {
     /**
      * 新增部门
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept){
         //System.out.println("新增部门：" + dept);
@@ -101,6 +104,7 @@ public class DeptController {
     /**
      * 修改部门
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept){
         //System.out.println("修改部门：" + dept);

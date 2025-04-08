@@ -1,6 +1,8 @@
 package com.didi.filter;
 
+import com.didi.utils.CurrentHolder;
 import com.didi.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -40,7 +42,10 @@ public class TokenFilter implements Filter {
 
         // 5. 如果token存在，校验token，如果校验失败 -> 返回错误信息(响应401状态码)
         try {
-            JwtUtils.parseJWT(token);
+            Claims claims = JwtUtils.parseJWT(token);
+            Integer empId = Integer.valueOf(claims.get("id").toString());
+            CurrentHolder.setCurrentId(empId);
+            log.info("当前登录用户ID：{} ,将其存入ThreadLocal", empId);
         } catch (Exception e){
             log.info("token非法，响应401");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -50,5 +55,8 @@ public class TokenFilter implements Filter {
         // 6. 校验通过, 放行
         log.info("token校验通过，放行");
         filterChain.doFilter(request, response);
+
+        // 7. 删除ThreadLocal中的数据
+        CurrentHolder.remove();
     }
 }

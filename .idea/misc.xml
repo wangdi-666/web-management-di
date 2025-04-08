@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/tlias-web-management-di/pom.xml" />
         <option value="$PROJECT_DIR$/../tlias-web-management/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-aop-quickstart/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

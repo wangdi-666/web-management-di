@@ -4,6 +4,8 @@ import com.didi.pojo.OperateLog;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface OperateLogMapper {
 
@@ -12,4 +14,7 @@ public interface OperateLogMapper {
             "values (#{operateEmpId}, #{operateTime}, #{className}, #{methodName}, #{methodParams}, #{returnValue}, #{costTime});")
     public void insert(OperateLog log);
 
+
+    //分页查询日志数据
+    List<OperateLog> findLogAll();
 }

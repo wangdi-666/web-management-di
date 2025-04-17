@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$PROJECT_DIR$/../../prosoft/apache-maven-3.9.4/mvn_repo/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$PROJECT_DIR$/../../prosoft/apache-maven-3.9.4/mvn_repo/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="tlias-web-management-di" />
       </profile>
@@ -17,15 +16,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springboot-web-config" />
-        <module name="aliyun-oss-spring-boot-starter" />
-        <module name="springboot-autoconfiguration-test" />
-        <module name="aliyun-oss-spring-boot-autoconfigure" />
-        <module name="itheima-utils" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
+      <module name="aliyun-oss-spring-boot-autoconfigure" target="17" />
+      <module name="aliyun-oss-spring-boot-starter" target="17" />
+      <module name="itheima-utils" target="17" />
       <module name="springboot-aop-quickstart" target="17" />
+      <module name="springboot-autoconfiguration-test" target="17" />
+      <module name="springboot-web-config" target="17" />
       <module name="tlias-web-management" target="17" />
     </bytecodeTargetLevel>
   </component>
